@@ -17,7 +17,7 @@ const Dashboard = () => {
   const featuredActions = [
     {
       title: "Watch & Earn",
-      tokens: 10,
+      tokens: 50,
       description:
         "Watch a short, engaging 15-second video advertisement to instantly earn tokens.",
       link: "/watch",
@@ -27,10 +27,10 @@ const Dashboard = () => {
         "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop",
     },
     {
-      title: "Daily Check-in",
-      tokens: 5,
+      title: "Check-in",
+      tokens: 100,
       description:
-        "Simply check-in once a day to collect easy tokens. Don't miss your streak!",
+        "Simply check-in to one of our partner hotels and restaurents. Enjoy exploring!",
       link: "/checkin",
       action: "Check In Now",
       icon: <CheckCircleOutlined />,
@@ -39,7 +39,7 @@ const Dashboard = () => {
     },
     {
       title: "Scan QR Code",
-      tokens: 20,
+      tokens: 75,
       description:
         "Find and scan a special QR code at partner locations for a significant bonus.",
       link: "/scan",
