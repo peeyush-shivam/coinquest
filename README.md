@@ -4,7 +4,7 @@ A modern web-based reward experience where users unlock digital tokens by comple
 
 ## 🚀 Live Demo
 
-[View Live Demo](https://your-demo-link.com) _(Add your deployment link)_
+[View Live Demo](https://coinquest-collect.netlify.app/)
 
 ## ✨ Core Features
 
