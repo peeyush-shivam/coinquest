@@ -1,0 +1,29 @@
+/* Ant Design Overrides with higher specificity */
+.ant-card .ant-card-body {
+  padding: 0 !important;
+}
+
+.ant-card .ant-card-body .p-6 {
+  padding: 1.5rem !important;
+}
+
+.ant-card .ant-card-body .mb-3 {
+  margin-bottom: 0.75rem !important;
+}
+
+.ant-card .ant-card-body .mb-4 {
+  margin-bottom: 1rem !important;
+}
+
+/* Add more specific overrides as needed */
+.ant-card .ant-card-body .flex {
+  display: flex !important;
+}
+
+.ant-card .ant-card-body .justify-between {
+  justify-content: space-between !important;
+}
+
+.ant-card .ant-card-body .items-center {
+  align-items: center !important;
+}
