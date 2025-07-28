@@ -8,7 +8,8 @@ export default defineConfig({
   build: {
     outDir: "dist",
     sourcemap: false,
-    minify: "terser",
+    minify: "esbuild",
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         manualChunks: {
@@ -17,13 +18,9 @@ export default defineConfig({
           maps: ["leaflet", "react-leaflet"],
           player: ["react-player"],
           notifications: ["react-toastify"],
+          router: ["react-router-dom"],
+          utils: ["react-toastify"],
         },
-      },
-    },
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
       },
     },
   },
