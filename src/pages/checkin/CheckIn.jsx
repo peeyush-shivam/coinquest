@@ -23,6 +23,7 @@ import {
   QuestionCircleOutlined,
 } from "@ant-design/icons";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import ActionPageLayout, {
   standardCardStyle,
@@ -33,6 +34,40 @@ import ActionPageLayout, {
 } from "../../layouts/ActionPageLayout";
 
 const { Title, Paragraph, Text } = Typography;
+
+// Fix for Leaflet marker icons in production
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+  iconUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+});
+
+// Custom map pin marker icons with SVG
+const createMapPinIcon = (color = "#667eea", isUser = false) => {
+  return L.divIcon({
+    className: "custom-marker",
+    html: `<div style="
+      width: 24px;
+      height: 24px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+      ${isUser ? "animation: pulse 2s infinite;" : ""}
+    ">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+        <circle cx="12" cy="10" r="3" fill="${color}"/>
+      </svg>
+    </div>`,
+    iconSize: [24, 24],
+    iconAnchor: [12, 24], // Anchor at the bottom point of the pin
+  });
+};
+
+const userIcon = createMapPinIcon("#52c41a", true); // Green for user location with pulse
+const locationIcon = createMapPinIcon("#ff4d4f", false); // Red for check-in locations
 
 export default function CheckIn() {
   const [userLocation, setUserLocation] = useState(null);
@@ -369,7 +404,10 @@ export default function CheckIn() {
 
                   {/* User location marker */}
                   {userLocation && (
-                    <Marker position={[userLocation.lat, userLocation.lng]}>
+                    <Marker
+                      position={[userLocation.lat, userLocation.lng]}
+                      icon={userIcon}
+                    >
                       <Popup>
                         <div>
                           <strong>Your Location</strong>
@@ -389,6 +427,7 @@ export default function CheckIn() {
                         location.coordinates.lat,
                         location.coordinates.lng,
                       ]}
+                      icon={locationIcon}
                     >
                       <Popup>
                         <div>
