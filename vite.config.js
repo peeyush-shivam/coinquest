@@ -19,7 +19,6 @@ export default defineConfig({
           player: ["react-player"],
           notifications: ["react-toastify"],
           router: ["react-router-dom"],
-          utils: ["react-toastify"],
         },
       },
     },
